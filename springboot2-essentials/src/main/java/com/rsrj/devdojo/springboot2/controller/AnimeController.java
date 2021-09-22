@@ -21,12 +21,12 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
+/*Modifiquei aqui para testar o GIT*/
+
 /*O devtools foi adicionado para possibilitar o hotswap que permite que a atualizacao
  * de algumas partes do codigo nao precisem que o servidor seja totalmente reiniciado
  * no exemplo fiz a refatoracao de DBZ pra Dragon Ball Z e o que levava 1,5seg levou
  * 200ms */
-
-
 
 @RestController
 /*Normalmente esse mapping eh deixado no plural*/
