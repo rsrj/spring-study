@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,28 +15,11 @@ import lombok.NoArgsConstructor;
 /*Necessario um construtor sem argumentos para o hibernate*/
 @NoArgsConstructor
 @Entity
+@Builder
 public class Anime {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	/*Por default o Jackson vai mapear pelo nome do atributo
-	 * caso o nome do atributo esteja diferente eh preciso destacar
-	 * atraves da Annotation abaixo qual atributo realmente se deseja.*/
-	//@JasonProperty("name")
 	private String name;
-/*	
-	public Anime (String name) {
-		this.setName(name);	
-	}
-	public Anime () {
-		
-	}
 
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-*/
 }
