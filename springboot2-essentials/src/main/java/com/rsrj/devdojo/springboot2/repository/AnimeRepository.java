@@ -9,7 +9,7 @@ import com.rsrj.devdojo.springboot2.domain.Anime;
  * com o banco de dados*/
 public interface AnimeRepository extends JpaRepository<Anime, Long>{
 	/* No argumento do Jpa se coloca Anime como classe a ser armazenada 
-	 * o atributo que representa o IDe*/	
+	 * o atributo que representa o IDE*/
 	//Jah tem metodos disponiveis no JPA repositorio para listagem
 	//dentre outras funcoes
 	//List <Anime> findAll();
