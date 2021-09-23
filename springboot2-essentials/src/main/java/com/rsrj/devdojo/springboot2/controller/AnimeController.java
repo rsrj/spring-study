@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rsrj.devdojo.springboot2.domain.Anime;
+import com.rsrj.devdojo.springboot2.requests.AnimePostRequestBody;
+import com.rsrj.devdojo.springboot2.requests.AnimePutRequestBody;
 import com.rsrj.devdojo.springboot2.service.AnimeService;
 import com.rsrj.devdojo.springboot2.util.DateUtil;
 import java.util.List;
@@ -77,14 +79,14 @@ public class AnimeController {
 	 * por exemplo, que retorne um objeto Anime ao inves de uma lista */
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<Anime> findById(@PathVariable long id){
-		return ResponseEntity.ok(animeService.findById(id));
+		return ResponseEntity.ok(animeService.findByIdOrThrowBadRequestException(id));
 	}
 	
 	/*Realizando requisicoes do tipo POST*/
 	/*Caso so haja um post por contexto nao eh necessario definir um path*/
 	@PostMapping
-	public ResponseEntity<Anime> save(@RequestBody Anime anime){
-		return new ResponseEntity<>(animeService.save(anime), HttpStatus.CREATED);
+	public ResponseEntity<Anime> save(@RequestBody AnimePostRequestBody animePostRequestBody){
+		return new ResponseEntity<>(animeService.save(animePostRequestBody), HttpStatus.CREATED);
 	}
 	
 	/*Realizando requisicoes do tipo DELETE*/
@@ -99,8 +101,8 @@ public class AnimeController {
 	
 	/*Substitui o estado inteiro do objeto*/
 	@PutMapping
-	public ResponseEntity<Void> replace(@RequestBody Anime anime) {
-		animeService.replace(anime);
+	public ResponseEntity<Void> replace(@RequestBody AnimePutRequestBody animePutRequestBody) {
+		animeService.replace(animePutRequestBody);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }
