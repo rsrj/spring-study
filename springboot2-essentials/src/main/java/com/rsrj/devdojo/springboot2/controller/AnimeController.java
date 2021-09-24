@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rsrj.devdojo.springboot2.domain.Anime;
@@ -80,6 +81,13 @@ public class AnimeController {
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<Anime> findById(@PathVariable long id){
 		return ResponseEntity.ok(animeService.findByIdOrThrowBadRequestException(id));
+	}
+	
+	/*Deixa com o mesmo caminho dara conflito mesmo que o codigo funcione*/
+	@GetMapping(path = "/find")
+	/*@RequestParam permite colocar os parametros diretamente na URL*/
+	public ResponseEntity<List<Anime>> findByName(@RequestParam String name){
+		return ResponseEntity.ok(animeService.findByName(name));
 	}
 	
 	/*Realizando requisicoes do tipo POST*/
