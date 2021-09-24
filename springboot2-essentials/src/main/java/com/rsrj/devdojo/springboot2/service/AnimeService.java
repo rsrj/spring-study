@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.rsrj.devdojo.springboot2.domain.Anime;
+import com.rsrj.devdojo.springboot2.mapper.AnimeMapper;
 import com.rsrj.devdojo.springboot2.repository.AnimeRepository;
 import com.rsrj.devdojo.springboot2.requests.AnimePostRequestBody;
 import com.rsrj.devdojo.springboot2.requests.AnimePutRequestBody;
@@ -34,9 +35,8 @@ public class AnimeService{
 	}
 
 	public Anime save(AnimePostRequestBody animePostRequestBody) {
-			Anime anime = Anime.builder().name(animePostRequestBody.getName()).build();
-			/*Salva e ja retorna a variavel com o ID atualizado*/
-			return animeRepository.save(anime);
+			/*Ao inves de usar um builder aqui se utiliza o framework MapStruct*/
+			return animeRepository.save(AnimeMapper.INSTANCE.toAnime(animePostRequestBody));
 	}
 
 	public void delete(long id) {
@@ -45,13 +45,12 @@ public class AnimeService{
 	}
 
 	public void replace(AnimePutRequestBody animePutRequestBody) {
+		/*Primeiro verifica se o anime ja existe*/
 		Anime savedAnime = findByIdOrThrowBadRequestException(animePutRequestBody.getId());
-		Anime anime = Anime.builder()
-				/* Garante que o id eh o recuperado no banco de dados ou lanca uma exception
-				 * dizendo que nao existe o objeto na memoria*/
-				.id(savedAnime.getId())
-				.name(animePutRequestBody.getName())
-				.build();
+		/*Faz o mapeamento do nome*/
+		Anime anime = AnimeMapper.INSTANCE.toAnime(animePutRequestBody);
+		/*Atualiza o Id com o existente*/
+		anime.setId(savedAnime.getId());
 		animeRepository.save(anime);
 	} 
 }
