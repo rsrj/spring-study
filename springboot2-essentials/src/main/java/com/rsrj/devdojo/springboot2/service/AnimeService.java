@@ -2,7 +2,8 @@ package com.rsrj.devdojo.springboot2.service;
 
 import java.util.List;
 
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,8 +27,8 @@ public class AnimeService{
 		
 	/*Aqui foi feito uma mudanca tirando a lista que foi definida estaticamente*/
 	
-	public List<Anime> listAll(){
-		return animeRepository.findAll();
+	public Page<Anime> listAll(Pageable pageable){
+		return animeRepository.findAll(pageable);
 	} 
 	
 	public List<Anime> findByNameContaining(String name){
