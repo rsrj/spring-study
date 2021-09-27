@@ -1,5 +1,10 @@
 package com.rsrj.devdojo.springboot2.client;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
@@ -18,5 +23,15 @@ public class SpringClient {
 		/*Requisitando o objeto diretamente*/
 		Anime object = new RestTemplate().getForObject("http://localhost:8080/animes/{id}", Anime.class, 2);
 		log.info(object);
+		
+		Anime[] animes = new RestTemplate().getForObject("http://localhost:8080/animes/all", Anime[].class);
+		log.info(Arrays.toString(animes));
+		
+		ResponseEntity<List<Anime>> exchange = new RestTemplate().exchange("http://localhost:8080/animes/all", 
+				HttpMethod.GET, 
+				null, 
+				new ParameterizedTypeReference<List<Anime>>() {	
+		});
+		log.info(exchange.getBody());
 	}
 }

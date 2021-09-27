@@ -62,11 +62,15 @@ public class AnimeController {
 	}*/
 	
 	
-	// @GetMapping(path = "list")
-	/* Se esse Mapping for deixado sem o path, a requisicao animes
-	 * retornara a lista de animes*/
 	@GetMapping
 	public ResponseEntity<Page<Anime>> list(Pageable pageable){
+		/*Testando a estrutura Pagleable*/
+		log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
+		return ResponseEntity.ok(animeService.listAll(pageable));
+	}
+	
+	@GetMapping(path = "/all")
+	public ResponseEntity<List<Anime>> listAll(){
 		/*Para funcionar esse codigo precisei instalar o plugin por:
 		 * https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqa1hUTTZQNW92ZlZ2Q054QnZNQlVRVTJLcktfUXxBQ3Jtc0ttejJGeGs4aGVlWXlGRUVYQ0ppUTFDWEI2WHBqd293SmVKWDRhaTlWUFlkM2t1YndaUEJKZVhoWTdoYjhWVUJ6OE5OVnRpU1BtU3p0YkNoQUxaNGw5OGhrVHhkaFh5SER3UUhDR1NlQkJpcFFsVHE3Yw&q=https%3A%2F%2Fprojectlombok.org%2Fdownloads%2Flombok.jar*/
 		log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
@@ -78,7 +82,7 @@ public class AnimeController {
 		 * como um Bean (nesse caso do tipo @Service), assim como DateUtil(@Component) */
 		/* Ao inves de retornar diretamente a string eh bom retornar um ResponseEntity que coloca
 		 * tambem o status da requisicao*/
-		return ResponseEntity.ok(animeService.listAll(pageable));
+		return ResponseEntity.ok(animeService.listAllNonPageable());
 	}
 
 	/* Eh provavel que haja mais de um get por contexto
