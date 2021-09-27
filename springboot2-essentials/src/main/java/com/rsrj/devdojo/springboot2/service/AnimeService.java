@@ -2,8 +2,9 @@ package com.rsrj.devdojo.springboot2.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rsrj.devdojo.springboot2.domain.Anime;
 import com.rsrj.devdojo.springboot2.exception.BadRequestException;
@@ -38,6 +39,10 @@ public class AnimeService{
 				.orElseThrow(() -> new BadRequestException("Anime not found"));
 	}
 
+	/*Se usa em casos em que ao gerar uma excecao o programa precisa desfazer as mudancas*/
+	/*Para checked Exceptions eh necessario declarar o rollback explicitamente*/
+	//@Transactional(rollbackFor = Exception.class)
+	@Transactional
 	public Anime save(AnimePostRequestBody animePostRequestBody) {
 			/*Ao inves de usar um builder aqui se utiliza o framework MapStruct*/
 			return animeRepository.save(AnimeMapper.INSTANCE.toAnime(animePostRequestBody));
