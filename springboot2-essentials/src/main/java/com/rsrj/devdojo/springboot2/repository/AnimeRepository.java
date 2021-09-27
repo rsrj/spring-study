@@ -13,7 +13,7 @@ import com.rsrj.devdojo.springboot2.domain.Anime;
  * com o banco de dados*/
 public interface AnimeRepository extends JpaRepository<Anime, Long>{
 
-	public List<Anime> findByName(String name);
+	public List<Anime> findByNameContaining(String name);
 
 	
 }

@@ -87,7 +87,7 @@ public class AnimeController {
 	@GetMapping(path = "/find")
 	/*@RequestParam permite colocar os parametros diretamente na URL*/
 	public ResponseEntity<List<Anime>> findByName(@RequestParam String name){
-		return ResponseEntity.ok(animeService.findByName(name));
+		return ResponseEntity.ok(animeService.findByNameContaining(name));
 	}
 	
 	/*Realizando requisicoes do tipo POST*/
