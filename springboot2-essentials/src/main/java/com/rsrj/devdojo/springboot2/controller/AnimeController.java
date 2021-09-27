@@ -21,6 +21,8 @@ import com.rsrj.devdojo.springboot2.service.AnimeService;
 import com.rsrj.devdojo.springboot2.util.DateUtil;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -93,7 +95,7 @@ public class AnimeController {
 	/*Realizando requisicoes do tipo POST*/
 	/*Caso so haja um post por contexto nao eh necessario definir um path*/
 	@PostMapping
-	public ResponseEntity<Anime> save(@RequestBody AnimePostRequestBody animePostRequestBody){
+	public ResponseEntity<Anime> save(@RequestBody @Valid AnimePostRequestBody animePostRequestBody){
 		return new ResponseEntity<>(animeService.save(animePostRequestBody), HttpStatus.CREATED);
 	}
 	
