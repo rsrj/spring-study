@@ -1,6 +1,5 @@
 package com.rsrj.devdojo.springboot2.controller;
 
-import java.time.LocalDateTime;
 
 
 import org.springframework.data.domain.Page;
@@ -21,13 +20,11 @@ import com.rsrj.devdojo.springboot2.domain.Anime;
 import com.rsrj.devdojo.springboot2.requests.AnimePostRequestBody;
 import com.rsrj.devdojo.springboot2.requests.AnimePutRequestBody;
 import com.rsrj.devdojo.springboot2.service.AnimeService;
-import com.rsrj.devdojo.springboot2.util.DateUtil;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 
 /*Modifiquei aqui para testar o GIT*/
 /*Modificando novamente para testar no outro*/
@@ -40,7 +37,7 @@ import lombok.extern.log4j.Log4j2;
 @RestController
 /*Normalmente esse mapping eh deixado no plural*/
 @RequestMapping("animes")
-@Log4j2
+
 /*Eh possivel utilizar annotations do lombok para inserir o construtor diretamente
  * @RequiredArgsConstructor - Constroi so para os atributos final
  * @AllArgsConstructor*/
