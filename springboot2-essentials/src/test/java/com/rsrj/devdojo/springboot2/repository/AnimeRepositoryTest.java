@@ -14,6 +14,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import com.rsrj.devdojo.springboot2.domain.Anime;
 import com.rsrj.devdojo.springboot2.util.AnimeCreator;
 
+
+/*Descreve os testes das interacoes com o banco de dados*/
 @DataJpaTest
 @DisplayName("Tests for Anime Repository")
 class AnimeRepositoryTest {
