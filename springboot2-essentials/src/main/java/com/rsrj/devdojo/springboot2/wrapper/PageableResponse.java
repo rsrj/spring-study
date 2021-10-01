@@ -13,9 +13,6 @@ import org.springframework.data.domain.PageRequest;
 @Getter
 @Setter
 public class PageableResponse<T> extends PageImpl<T> {
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private boolean first;
     private boolean last;
